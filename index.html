@@ -8,15 +8,33 @@
 </head>
 <body>
     <!--mayhap this needs an action?-->
-    <form>
+    <form  method="POST" action="/register">
         <label for="name">name</label>
-        <input id="name"></input>
+        <input type="text" 
+    id="name" 
+    name="name" 
+    pattern="[^-']([a-zA-ZÀ-ÖØ-öø-ÿ '-](?!.*''|--|  |- |' | '| -.*))+" 
+    title="please enter a valid name, only letters, spaces, hyphens, latin alphabet, and apostrophes." 
+    minlength="2" 
+    maxlength="25"></input>
         </br>
         <label for="username">username</label>
-        <input id="username">
+        <input type="text" 
+    id="username" 
+    name="username" 
+    pattern="[^-']([a-zA-ZÀ-ÖØ-öø-ÿ '-](?!.*''|--|  |- |' | '| -.*))+" 
+    title="please enter a valid username, only letters, spaces, hyphens, latin alphabet, and apostrophes." 
+    minlength="2" 
+    maxlength="15"></input>
         </br>
         <label for="email">email</label>
-        <input id="email">
+        <input type="text"
+        id="email"
+        name="email"
+        pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"
+    title="please enter a valid email, no numbers in the domain." 
+    minlength="2" 
+    maxlength="255"></input>
         </br>
         <input type="submit">
     </form>

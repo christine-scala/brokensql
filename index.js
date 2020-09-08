@@ -2,14 +2,17 @@
 
 var express = require('express');
 var mysql = require('mysql');
-
+var bodyParser  = require("body-parser");
 var app = express();
+
+
+
 
 var connection = mysql.createConnection({
     host     : 'localhost',
-    user     : '',
-    database : '',
-    password : ''
+    user     : 'root',
+    database : 'week11',
+    password : 'root'
   });
 
   connection.connect();
