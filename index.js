@@ -18,8 +18,8 @@ app.post("/", (req,res)=> {
 
   //validate un bw 2-15 letters, capital or lowercase, or numbers
 var regexUN = /([A-Za-z0-9]){2,15}/;
-var regexName = /(^[^-']([a-zA-Z]){2,25}/;
-var regexEmail = /([^[a-zA-Z_.0-9]+@[a-zA-Z_.0-9]+?\.[a-zA-Z]{2,3}$){2,255}/;
+var regexName = /(^[^-']([a-zA-Z])){2,25}/;
+var regexEmail = /([[a-zA-Z_.0-9]+@[a-zA-Z_.0-9]+\.[a-zA-Z]{2,3}$)/;
 
 if(regexUN.test(username)){
   res.send(username);
@@ -29,18 +29,18 @@ if(regexUN.test(username)){
 });
 
 
-// if(regexName.test(name)){
-//   res.send(name);
-// } else {
-//   res.send('invalid name');
-// }
+ if(regexName.test(name)){
+   res.send(name);
+ } else {
+   res.send('invalid name');
+ }
 
 
-// if(regexEmail.test(email)){
-//   res.send(email);
-// } else {
-//   res.send('invalid email');
-// }
+ if(regexEmail.test(email)){
+   res.send(email);
+ } else {
+   res.send('invalid email');
+ }
 
 var connection = mysql.createConnection({
     host     : 'localhost',
