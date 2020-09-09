@@ -1,0 +1,21 @@
+html {
+    background-color: #11749b;
+}
+
+.textboxes {
+    text-align: center;
+    padding: 2rem;
+    font-weight: bold;
+    font-size: larger;
+}
+
+#submit {
+    font-weight: bold;
+    background-color: aliceblue;
+    border-radius: 20px;
+}
+
+.images {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}

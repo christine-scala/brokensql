@@ -1,48 +1,46 @@
-//THIS FILE NEEDS TO BE FINISHED Y'ALL
-
 var express = require('express');
 var mysql = require('mysql');
-var bodyParser  = require("body-parser");
 var app = express();
 var path= require("path");
 
+app.use(express.urlencoded({extended: true}));
 
 app.get("/", (req,res)=> {
   res.sendFile(path.join(__dirname, "/index.html"));
 })
+ 
+app.post("/", (req,res)=> {
+  console.log(req.body);
 
-app.post("/", [
-  check("name")
-      // Remove excess whitespace so we can see if we got only spaces
-      .trim()
-      // Name can't be just empty
-      .notEmpty().withMessage("Name is required.")
-      // If err, kick the user out to fix it
-      .bail()
-      // Matches letters spaces hyphens and apostrophes, including unicode characters for people with accents in their names, see https://regex101.com/r/ZKZkOC/4/ for examples
-      .matches(/^[^-']([a-zA-ZÀ-ÖØ-öø-ÿ '-](?!.*''|--|  |- |' | '| -.*))+$/, 'g').withMessage("First name should start with a letter, and may only contain letters with spaces, hyphens, and apostrophes.")
-      // If err, kick the user out to fix it
-      .bail()
-      // Match the length of the database column
-      .isLength( { min:2, max:25 }).withMessage("Please enter a name between 2 and 25 characters."),
-  check("username")
-      .trim()
-      .notEmpty().withMessage("Username is required.")
-      .bail()
-      .matches(/^[^-']([a-zA-ZÀ-ÖØ-öø-ÿ '-](?!.*''|--|  |- |' | '| -.*))+$/, 'g').withMessage("Last name should start with a letter, and may only contain letters with spaces, hyphens, and apostrophes.")
-      .bail()
-      .isLength( { min:2, max:15 }).withMessage("Please enter a username between 2 and 15 characters."),
-  check("email")
-      .trim()
-      .notEmpty().withMessage("email is required.")
-      .bail()
-      .matches(/^[^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$))+$/, 'g').withMessage("Last name should start with a letter, and may only contain letters with spaces, hyphens, and apostrophes.")
-      .bail()
-      .isLength( { min:2, max:255 }).withMessage("Please enter a valid email."),
-],
-(req,res)=> {
-  res.sendFile(path.join(__dirname, "/index.html"));
+  const name = req.body.name;
+  const username = req.body.username;
+  const email = req.body.email;
+
+  //validate un bw 2-15 letters, capital or lowercase, or numbers
+var regexUN = /([A-Za-z0-9]){2,15}/;
+var regexName = /(^[^-']([a-zA-Z]){2,25}/;
+var regexEmail = /([^[a-zA-Z_.0-9]+@[a-zA-Z_.0-9]+?\.[a-zA-Z]{2,3}$){2,255}/;
+
+if(regexUN.test(username)){
+  res.send(username);
+} else {
+  res.send('invalid username');
+}
 });
+
+
+// if(regexName.test(name)){
+//   res.send(name);
+// } else {
+//   res.send('invalid name');
+// }
+
+
+// if(regexEmail.test(email)){
+//   res.send(email);
+// } else {
+//   res.send('invalid email');
+// }
 
 var connection = mysql.createConnection({
     host     : 'localhost',
