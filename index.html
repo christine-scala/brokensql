@@ -15,7 +15,7 @@
     id="name" 
     name="name" 
     placeholder="Johnny"
-    pattern="[^-']([a-zA-Z](?!.*''|--| |- |' | '| -.*))+" 
+    pattern="^([a-zA-Z]{2,25})(\s)*([A-Za-z]{2,25})?$" 
     title="please enter a valid name, only letters, spaces, hyphens, and apostrophes." 
     minlength="2" 
     maxlength="25"></input>
